@@ -3,7 +3,7 @@ import { Dispatcher } from './dispatcher';
 import { Store } from './store';
 import { State } from './state';
 import { combineReducers } from './utils';
-import { OpaqueToken, NgModule, ModuleWithProviders } from '@angular/core';
+import { OpaqueToken} from '@angular/core';
 
 export const INITIAL_REDUCER = new OpaqueToken('Token ngrx/store/reducer');
 export const INITIAL_STATE = new OpaqueToken('Token ngrx/store/initial-state');
@@ -51,15 +51,4 @@ export function provideStore(_reducer: any, _initialState?: any): any[] {
     { provide: _INITIAL_STATE, useValue: _initialState },
     { provide: _INITIAL_REDUCER, useValue: _reducer }
   ];
-}
-
-
-@NgModule({})
-export class StoreModule {
-  static provideStore(_reducer: any, _initialState?: any): ModuleWithProviders {
-    return {
-      ngModule: StoreModule,
-      providers: provideStore(_reducer, _initialState)
-    };
-  }
 }
